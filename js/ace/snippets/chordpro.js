@@ -71,6 +71,18 @@ define('ace/snippets/chordpro', ['require', 'exports', 'module'], function(requi
 		'snippet colb',
 		'	{column_break}',
 
+		// intro tag
+		'snippet i',
+		'	Intro: [${1:chord1}]|:  .  .  .  [${2:chord2}]|  .  .  .  [${3:chord3}]|  .  .  .  [${4:chord4}]|  .  .  .  :|',
+		'snippet intro',
+		'	Intro: [${1:chord1}]|:  .  .  .  [${2:chord2}]|  .  .  .  [${3:chord3}]|  .  .  .  [${4:chord4}]|  .  .  .  :|',
+
+		// strum tag
+		'snippet down',
+		'	↓',
+		'snippet up',
+		'	↑',
+
 		// that's all folks!
 		// chord usage
 		'snippet [',

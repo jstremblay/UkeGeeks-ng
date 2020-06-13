@@ -44,10 +44,11 @@ function BuildSongListByArtist($SongList)
       }
 
       echo '<li>';
-      echo '  <a href="'.$song->Uri.'"'.(Config::openSongInNewTab?' target=_blank':'').'><span class="SongListSong" data-searchable="'.$song->Artist.' - '.$song->Title.'">'.$song->Title.'</span></a>';
+      echo createSongRow($song);
       echo '</li>';
     }
 }
+
 
 
 // Build a songlist, alphabetically ordered, by TITLE
@@ -72,7 +73,7 @@ function BuildSongListByTitle($SongList)
       }
 
       echo '<li>';
-      echo '  <a href="'.$song->Uri.'"'.(Config::openSongInNewTab?' target=_blank':'').'><span class="SongListSong" data-searchable="'.$song->Artist.' - '.$song->Title.'">'.$song->Title.'</span></a>';
+      echo createSongRow($song);
       echo '</li>';
     }
 }
@@ -106,13 +107,25 @@ function BuildSongListByCategory($SongList)
           if(in_array(strtolower($category), array_map('strtolower', $s->Category)))
           {
             echo '<li>';
-            echo '  <a href="'.$s->Uri.'"'.(Config::openSongInNewTab?' target=_blank':'').'><span class="SongListSong" data-searchable="'.$s->Artist.' - '.$s->Title.'">'.$s->Title.'</span></a>';
+            echo createSongRow($s);
             echo '</li>';
           }
         }
         echo '</ul>';
       }
     }
+}
+
+function createSongRow($song) {
+  return '  <a href="'.$song->Uri.'"'.(Config::openSongInNewTab?' target=_blank':'').'><span class="SongListSong" data-searchable="'.$song->Artist.' - '.$song->Title.'">'.createRowTitle($song).'</span></a>';
+}
+
+function createRowTitle($song) {
+    if (strlen($song->Subtitle) <= 0) {
+        return $song->Title;
+    }
+
+    return $song->Title . '<span class="SongListSongSubtitle"> - '.$song->Subtitle.'</span>';
 }
 
 /* ------------------------------------------------

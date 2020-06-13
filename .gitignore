@@ -8,3 +8,5 @@ cpm/*
 !cpm/.gitkeep
 songs/
 .ovhconfig
+
+.DS_Store

@@ -20,6 +20,12 @@ class SongList_Vm extends _base_Vm {
 	 */
 	public $IsNewAllowed = false;
 
+  /**
+   * Locale for properly sorting songs.
+   * Should come from the user's Locale
+   */
+  public $Locale = '';
+
 	public $LogoutUri = '';
 
 	public $Headline = '';

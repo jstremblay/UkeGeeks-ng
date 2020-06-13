@@ -9,7 +9,7 @@ class SiteUser
 	public $Username = 'anon';
 	public $DisplayName = 'Guest';
 	public $MayEdit = false;
-  public $Language = '';
+  public $Locale = '';
   public $isAnonymous = true;
 
 	/**

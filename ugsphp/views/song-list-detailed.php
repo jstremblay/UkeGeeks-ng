@@ -2,22 +2,30 @@
 
 // Sort by ARTIST and then by TITLE
 function strCompareArtist($obj1, $obj2)
-{ 
+{
+    // TODO Locale should be a user's preference
+    // TODO Collator should be reused
+    $collator = collator_create('fr_CA');
+
     if(strtoupper($obj1->Artist) == strtoupper($obj2->Artist))
-      return strcasecmp($obj1->Title, $obj2->Title);
+      return collator_compare($collator, $obj1->Title, $obj2->Title);
     else
-      return strcasecmp($obj1->Artist, $obj2->Artist);
-} 
+      return collator_compare($collator, $obj1->Artist, $obj2->Artist);
+}
 
 // Sort by title
 function strCompareTitle($obj1, $obj2)
-{ 
+{
   return strcasecmp($obj1->Title, $obj2->Title);
-} 
+}
 
 // Build a songlist, alphabetically ordered, by ARTIST
-function BuildSongListByArtist($SongList)
+function BuildSongListByArtist($SongList, $Locale)
 {
+    // TODO Collator should be reused in sorting; in this case, set different strengths for listing than for sorting (primary _after_ sorting)
+    $songlistCollator = collator_create($Locale);
+    collator_set_strength( $songlistCollator, Collator::PRIMARY );
+
     usort($SongList, 'strCompareArtist');
 
     $currentLetter = '';
@@ -27,7 +35,7 @@ function BuildSongListByArtist($SongList)
     {
       $songLetter = substr($song->Artist, 0, 1);
 
-      if(strtoupper($currentLetter) != strtoupper($songLetter))
+      if(collator_compare($songlistCollator, $songLetter, $currentLetter) != 0)
       {
         $currentLetter = $songLetter;
         echo "<div class='SongListLetter'>".strtoupper($currentLetter)."</div>";
@@ -172,7 +180,7 @@ function BuildSongListByCategory($SongList)
           BuildSongListByTitle($model->SongList);
           break;
         default:
-          BuildSongListByArtist($model->SongList);
+          BuildSongListByArtist($model->SongList, $model->Locale);
       }
 		?>
 	</div>

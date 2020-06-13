@@ -3,12 +3,20 @@ class Lang
 {
   private static $_langData = null;
 
-  public static function Init($lang)
+  // Migrate from Init(lang) to better support Locale; for now, delegate validation
+  public static function InitLocale($locale)
   {
-    // Fallback if necessary
-    if($lang == '')
-      $lang = Config::Lang;
+    if ($locale == '')
+    {
+      $locale = Config::Locale;
+    }
 
+    $langStr = strtoupper(substr($locale, 0, 2));
+    self::Init($langStr);
+  }
+
+  private static function Init($lang)
+  {
     $file = "lang/$lang.json";
 
     if(!file_exists($file))

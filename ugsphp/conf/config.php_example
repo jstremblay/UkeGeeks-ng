@@ -76,11 +76,11 @@ class Config {
 	const openSongInNewTab = true;
 
 	/**
-	 * Language to use
-	 * @constant(Lang)
+	 * Locale to use. Contains the language string. Must be a valide Locale.
+	 * @constant(Locale)
 	 * @var string
 	 */
-	const Lang = 'EN';
+	const Locale = 'fr_CA';
 
 	// --------------------------------------
 	// Logins (only if "IsLoginRequired" enabled)
@@ -92,7 +92,7 @@ class Config {
 			'name' => 'Almighty Admin',
 			'isActive' => true,
 			'mayEdit' => true,
-			'lang' => ''
+			'locale' => 'en_CA'
 		),
 		array(
 			'user' => 'guest',
@@ -100,7 +100,7 @@ class Config {
 			'name' => 'Honored Guest',
 			'isActive' => true,
 			'mayEdit' => false,
-			'lang' => ''
+			'locale' => 'en_US'
 		),
 		array(
 			'user' => 'jake',
@@ -108,7 +108,7 @@ class Config {
 			'name' => 'Jake S.',
 			'isActive' => false,
 			'mayEdit' => true,
-			'lang' => ''
+			'locale' => ''
 		)
 	);
 

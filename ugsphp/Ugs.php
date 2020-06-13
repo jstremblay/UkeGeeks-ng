@@ -23,7 +23,7 @@ class Ugs{
 			}
 
     // Set user language if needed
-    Lang::Init($user->Language);
+		Lang::InitLocale($user->Locale);
 
 		$builder = $this->GetBuilder( $action, $user );
 		$model = $builder->Build();
@@ -195,7 +195,7 @@ class Ugs{
 			}
 		}
 
-    Lang::Init(Config::Lang);
+    Lang::InitLocale(Config::Locale);
 	}
 
 	/**
